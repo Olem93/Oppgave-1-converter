@@ -118,11 +118,11 @@ static void TempValues(string choiceSub)
         int inputNum = int.Parse(input);
         if (choiceSub == "Celsius til Fahrenheit")
         {
-            Console.WriteLine($"  \n{inputNum}C er {(inputNum * 1.8) + 32:F2}F");
+            Console.WriteLine($"  \n{inputNum}C er {(inputNum * 1.8) + 32:F1}F");
         }
         else if (choiceSub == "Fahrenheit til Celsius")
         {
-            Console.WriteLine($"  \n{inputNum}F er {(inputNum - 32) / 1.8:F2}C");
+            Console.WriteLine($"  \n{inputNum}F er {(inputNum - 32) / 1.8:F1}C");
         }
         Restart();
     } 
