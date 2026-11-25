@@ -14,7 +14,6 @@ static void Run()
     Console.Clear();
     GoToValueConverter(choice, choiceSub);
 
-    
 }
 
 
@@ -38,19 +37,25 @@ static string CheckType(string choice)
         Console.WriteLine("Velg hvilket temperaturformat du vil konvertere til");
         Console.WriteLine("  1. Celsius til Fahrenheit");
         Console.WriteLine("  2. Fahrenheit til Celsius");
-        return TempConverter(); //returnerer spesifikasjoner til "hovedkoden"
+        return TempConverter();
+    }
+    else if (choice == "Valuta")
+    {
+        Console.WriteLine("Velg hvilket vektformat du vil konvertere til");
+        Console.WriteLine("  1. nok til dollar");
+        Console.WriteLine("  2. dollar til nok");
+        return CurrencyConverter();
     }
     else if (choice == "Vekt")
     {
         Console.WriteLine("Velg hvilket vektformat du vil konvertere til");
         Console.WriteLine("  1. kg til lb");
         Console.WriteLine("  2. lb til kg");
-        return WeightConverter(); //returnerer spesifikasjoner til "hovedkoden"
+        return WeightConverter();
     }
         
     return "";
 }
-
 
 static void GoToValueConverter(string choice, string choiceSub)
 {
@@ -58,16 +63,16 @@ static void GoToValueConverter(string choice, string choiceSub)
     {
         TempValues(choiceSub); //Sender spesifikasjoner til metode som gjør matte
     }
+    else if (choice == "Valuta")
+    {
+        CurrencyValues(choiceSub);
+    }
     else if (choice == "Vekt")
     {
         WeightValues(choiceSub);
     }
 }
 
-
-
-
-///////////////////////////////////////////////////FERDIG///////////////////////////////////////
 static string WeightConverter()
 {
     var input = Console.ReadLine();
@@ -75,6 +80,18 @@ static string WeightConverter()
     {
         "1" => "kg til lb",
         "2" => "lb til kg",
+        _ => "",
+    };
+    return choice;
+}
+
+static string CurrencyConverter()
+{
+    var input = Console.ReadLine();
+    var choice = input switch
+    {
+        "1" => "nok til dollar",
+        "2" => "dollar til nok",
         _ => "",
     };
     return choice;
@@ -109,6 +126,30 @@ static void TempValues(string choiceSub)
         }
         Restart();
     } 
+    catch (Exception)
+    {
+        Console.WriteLine("Skriv et tall");
+        TempValues(choiceSub);
+    }
+}
+
+static void CurrencyValues(string choiceSub)
+{
+    Console.WriteLine("Skriv tallet du vil konvertere");
+    var input = Console.ReadLine();
+    try
+    {
+        int inputNum = int.Parse(input);
+        if (choiceSub == "nok til dollar")
+        {
+            Console.WriteLine($"  \n{inputNum} nok er {inputNum * 0.1} dollar");
+        }
+        else if (choiceSub == "dollar til nok")
+        {
+            Console.WriteLine($"  \n{inputNum} dollar er {inputNum * 10} nok");
+        }
+        Restart();
+    }
     catch (Exception)
     {
         Console.WriteLine("Skriv et tall");
