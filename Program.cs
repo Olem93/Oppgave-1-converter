@@ -1,23 +1,15 @@
 ﻿Console.WriteLine("Velg hva du vil konvertere");
-// Temperatur: Celsius, fahrenheit
+
 Console.WriteLine("  1. Temperatur");
 Console.WriteLine("  2. Valuta");
 Console.WriteLine("  3. Vekt");
-var choice = ChooseType();
-Console.Clear();
-var tempTest = CheckType(choice);
-Console.WriteLine(tempTest);
-static string CheckType(string choice)
-{
-    if (choice == "Temperatur")
-    {
-        Console.WriteLine("Velg hvilket temperaturformat du vil konvertere til");
-        Console.WriteLine("  1. Celsius til Fahrenheit");
-        Console.WriteLine("  2. Fahrenheit til Celsius");
-        return TempConverter();
-    }
-    return "";
-}
+var choice = ChooseType(); //Svare på meny over
+Console.Clear(); //Tømmer konsollen
+var choiceSub = CheckType(choice); //Sender tall til metode og returnerer spesifikasjoner
+TempValues(choiceSub); //Sender spesifikasjoner til metode som gjør matte
+
+
+
 
 
 static string ChooseType()
@@ -33,6 +25,19 @@ static string ChooseType()
     return choice;
 }
 
+static string CheckType(string choice)
+{
+    if (choice == "Temperatur")
+    {
+        Console.WriteLine("Velg hvilket temperaturformat du vil konvertere til");
+        Console.WriteLine("  1. Celsius til Fahrenheit");
+        Console.WriteLine("  2. Fahrenheit til Celsius");
+        return TempConverter(); //returnerer spesifikasjoner til "hovedkoden"
+    }
+    return "";
+}
+
+
 static string TempConverter()
 {
     var input = Console.ReadLine();
@@ -45,14 +50,27 @@ static string TempConverter()
     return choice;
 }
 
-//0 C = 30 F
-//0 F = -17.7778/18 C
-static void TempValues()
+//0 C = 32 F = C * 1.8 + 32
+//0 F = -17.7778/18 C = F - 32 / 1.8
+static void TempValues(string choiceSub)
 {
     var input = Console.ReadLine();
     try
     {
-        int.Parse(input);
+        int inputNum = int.Parse(input);
+        if (choiceSub == "Celsius til Fahrenheit")
+        {
+            Console.WriteLine($"{inputNum}C er {(inputNum * 1.8) + 32}F");
+        }
+        //Gjør matte
+        //Loop fra start
+
+
+    } 
+    catch (Exception)
+    {
+        Console.WriteLine("Skriv et tall");
+        TempValues(choiceSub);
     }
 
 }
