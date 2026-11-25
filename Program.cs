@@ -54,8 +54,6 @@ static string TempConverter()
     return choice;
 }
 
-//0 C = 32 F = C * 1.8 + 32
-//0 F = -17.7778/18 C = F - 32 / 1.8
 static void TempValues(string choiceSub)
 {
     Console.WriteLine("Skriv tallet du vil konvertere");
