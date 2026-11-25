@@ -1,16 +1,19 @@
-﻿Console.WriteLine("Velg hva du vil konvertere");
+﻿
+Run();
 
-Console.WriteLine("  1. Temperatur");
-Console.WriteLine("  2. Valuta");
-Console.WriteLine("  3. Vekt");
-var choice = ChooseType(); //Svare på meny over
-Console.Clear(); //Tømmer konsollen
-var choiceSub = CheckType(choice); //Sender tall til metode og returnerer spesifikasjoner
-Console.Clear();
-TempValues(choiceSub); //Sender spesifikasjoner til metode som gjør matte
+static void Run()
+{
+    Console.WriteLine("Velg hva du vil konvertere");
 
-
-
+    Console.WriteLine("  1. Temperatur");
+    Console.WriteLine("  2. Valuta");
+    Console.WriteLine("  3. Vekt");
+    var choice = ChooseType(); //Svare på meny over
+    Console.Clear(); //Tømmer konsollen
+    var choiceSub = CheckType(choice); //Sender tall til metode og returnerer spesifikasjoner
+    Console.Clear();
+    TempValues(choiceSub); //Sender spesifikasjoner til metode som gjør matte
+}
 
 
 static string ChooseType()
@@ -62,9 +65,10 @@ static void TempValues(string choiceSub)
         int inputNum = int.Parse(input);
         if (choiceSub == "Celsius til Fahrenheit")
         {
-            Console.WriteLine($"  {inputNum}C er {(inputNum * 1.8) + 32}F");
+            Console.WriteLine($"  \n{inputNum}C er {(inputNum * 1.8) + 32}F");
         }
-        //Loop fra start
+
+        Restart();
 
 
     } 
@@ -76,6 +80,14 @@ static void TempValues(string choiceSub)
 
 }
 
+
+static void Restart()
+{
+    Console.WriteLine("\nTrykk på en tast for å starte på nytt");
+    Console.ReadKey();
+    Console.Clear();
+    Run();
+}
 
 
 
